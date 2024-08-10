@@ -1,0 +1,102 @@
+
+<!------- Top Grid ------------------------------------------------------->
+::: {.grid}
+
+<!------- grid Column ---------------------------------------------------->
+::: {.g-col-12 .g-col-md-12 .g-col-lg-8}
+
+<!------- Inner first row Gird ------------------------------------------->
+::: {.grid .mt-4}
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+```{r}
+total_level_card_stats(
+  lvl_list = total_level_summary(state_df, current_year),
+  spark_element_tag = total_yearly_summary_sparkline(state_df, current_year),
+  lvl = "State",
+  analysis_yr_range
+)
+```
+
+:::
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+```{r}
+total_level_card_stats(
+  lvl_list = total_level_summary(lgc_df, current_year),
+  spark_element_tag = total_yearly_summary_sparkline(lgc_df, current_year),
+  lvl = "LGCs",
+  analysis_yr_range
+)
+```
+
+:::
+
+:::
+<!------- End Inner First row Gird --------------------------------------->
+
+<div class="row-gap"></div>
+
+<!------- Inner Second row Gird ------------------------------------------>
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+```{r}
+high_low_card_stats(
+  lvl_type = "state",
+  lvl_list = high_low_lvl_faac(current_state_df, "state")
+)
+```
+
+:::
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+```{r}
+high_low_card_stats(
+  lvl_type = "lgc",
+  lvl_list = high_low_lvl_faac(current_lgc_df, "lgc")
+)
+```
+
+:::
+
+:::
+<!------- End Inner Second row Gird -------------------------------------->
+
+:::
+<!------ End Grid Column ------------------------------------------------->
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-4}
+
+::: {.panel-tabset}
+
+## State
+
+```{r}
+geo_zone_card_stats(
+  geo_list = geo_zone_summary(current_state_df),
+  geo_spark_element_list = geo_zone_sparkline(state_df, current_year)
+)
+```
+
+## LGCs
+
+```{r}
+geo_zone_card_stats(
+  geo_list = geo_zone_summary(current_lgc_df),
+  geo_spark_element_list = geo_zone_sparkline(lgc_df, current_year)
+)
+```
+
+:::
+
+
+
+:::
+
+:::
+<!------- End Top Grid --------------------------------------------------->

@@ -1,0 +1,116 @@
+---
+echo: false
+message: false
+warning: false
+---
+
+
+
+```{r}
+library(readr)
+library(dplyr)
+library(lubridate)
+library(htmltools)
+```
+
+<!------- Source Report Functions ------------------------------------------->
+```{r}
+#| file: C:/Users/AYOMIDE/Documents/R/report/FAAC/report_function.R 
+```
+
+```{r}
+#| file: C:/Users/AYOMIDE/Documents/R/report/FAAC/ui_function.R 
+```
+
+<!------- Read State and LGCs Dataset --------------------------------------->
+```{r}
+state_df <- read_csv("data/state.csv") |> mutate(year = year(date))
+lgc_df <- read_csv("data/LGC.csv") |> mutate(year = year(date))
+```
+
+
+<!------- Current Data Information ------------------------------------------>
+```{r}
+curr_all_info <- get_current_year_data(state_df, lgc_df, previous_yr = FALSE)
+
+current_state_df <- curr_all_info$state
+current_lgc_df <- curr_all_info$lgc
+current_year <- curr_all_info$current_year
+previous_year <- curr_all_info$previous_year
+available_months <- curr_all_info$months
+analysis_yr_range <- curr_all_info$analysis_yr_range
+```
+
+```{r}
+current_date_info <- get_last_faac_month(state_df, lgc_df)
+
+current_date <- current_date_info$date
+# current_year <- current_date_info$year
+current_month_id <- current_date_info$month_id
+current_month_abbr_name <- current_date_info$month_abb
+current_month_full_name <- current_date_info$month_name
+```
+
+```{r}
+# analysis_yr_range <- analysis_full_year_range(state_df, lga_df)
+```
+
+
+<!----- OUTPUT -------------------------------------------------------------->
+<!------ Page Title & Navigation container ---------------------------------->
+```{r}
+curr_nav_year <- current_year 
+prev_nav_year <- current_year-1 
+
+page_title_nav(
+  "Nigerian States and Local Governments FAAC Allocation Breakdown", 
+  curr_nav_year, 
+  prev_nav_year, 
+  "current"
+)
+```
+
+
+<!------ Top Summary Statistics --------------------------------------------->
+{{< include _card_summary.qmd >}}
+
+<!------ Main Summary Table ------------------------------------------------->
+```{r}
+state_main_summary_df <- get_state_tbl_data(
+  state_df = state_df,
+  curr_state_df = current_state_df,
+  curr_lgc_df = current_lgc_df,
+  prev_yr = previous_year,
+  curr_yr = current_year,
+  month_ids = available_months
+)
+
+lgc_main_summary_df <- get_lgs_tbl_data(
+  lgc_df = lgc_df,
+  curr_lgc_df = current_lgc_df,
+  prev_yr = previous_year,
+  curr_yr = current_year,
+  month_ids = available_months
+)
+```
+
+
+
+
+```{r}
+main_table_title_info()
+```
+
+
+```{r}
+main_summary_table(state_main_summary_df, lgc_main_summary_df)
+```
+
+<!------ Period on Period Change -------------------------------------------->
+{{< include _allocation_change.qmd >}}
+
+<br>
+<br>
+
+<!------ Navigation js ------------------------------------------------------>
+{{< include _page_nav_js.qmd >}}

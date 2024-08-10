@@ -1,0 +1,84 @@
+```{r}
+last_four_yrs <- state_df |> 
+  filter(year <= current_year) |>
+  distinct(year) |> 
+  pull() |> rev() |> head(4)
+
+```
+
+
+::: {.grid .mt-4}
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+::: {.panel-tabset}
+
+## Overall MoM
+```{r}
+temp_df <- state_change(state_df, current_year, last_four_yrs, "mom", TRUE) |>
+  add_change_label(MoM_change)
+
+faac_change_tbl(
+  state_tbl = temp_df,
+  type = "mom",
+  include_state = FALSE,
+  table_title = "Total Month on Month State Allocation"
+)
+```
+
+## State MoM 
+```{r}
+temp_df <- state_change(state_df, current_year, last_four_yrs, "mom", FALSE) |>
+  add_change_label(MoM_change)
+
+faac_change_tbl(
+  state_tbl = temp_df,
+  type = "mom",
+  include_state = TRUE,
+  valid_yrs = last_four_yrs,
+  table_title = "State Month on Month Allocation"
+)
+```
+
+:::
+
+:::
+
+
+
+::: {.g-col-12 .g-col-md-12 .g-col-lg-6}
+
+::: {.panel-tabset}
+
+## Overall YoY
+```{r}
+temp_df <- state_change(state_df, current_year, last_four_yrs, "yoy", TRUE) |>
+  add_change_label(YoY_change)
+
+faac_change_tbl(
+  state_tbl = temp_df,
+  type = "yoy",
+  include_state = FALSE,
+  table_title = "Total Year on Year State Allocation"
+)
+```
+
+## State YoY 
+```{r}
+temp_df <- state_change(state_df, current_year, last_four_yrs, "yoy", FALSE) |>
+  add_change_label(YoY_change)
+
+faac_change_tbl(
+  state_tbl = temp_df,
+  type = "yoy",
+  include_state = TRUE,
+  valid_yrs = last_four_yrs,
+  table_title = "State Year on Year Allocation"
+)
+```
+
+:::
+
+:::
+
+:::

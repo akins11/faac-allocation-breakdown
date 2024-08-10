@@ -1,0 +1,41 @@
+```{js}
+
+const sidebar = document.getElementById('report_sidebar');
+
+const nav_list = document.querySelectorAll(".p-navbar li a");
+// const nav = document.querySelector(".navigation");
+
+
+function showSidebar() {
+  const show_icon = document.getElementById('show_sidebar_icon');
+  
+  show_icon.addEventListener('click', () => {
+    sidebar.style.display = "block";
+  });
+}
+
+function hideSidebar() {
+  const hide_icon = document.getElementById('hide_sidebar_icon');
+  
+  hide_icon.addEventListener('click', () => {
+    sidebar.style.display = "none";
+  });
+}
+
+//function activePage() {
+ // nav_list.forEach((item) => {
+   // console.log("Checking......")
+   // item.addEventListener("click", (e) => {
+      //nav_list.forEach((item) => item.classList.remove("active"));
+     // e.currentTarget.classList.add("active");
+      //console.log("Checking......")
+      //console.log(e);
+    //});
+  //});
+//}
+
+
+showSidebar();
+hideSidebar();
+//activePage();
+```

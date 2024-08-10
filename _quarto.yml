@@ -1,0 +1,17 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "FAAC"
+
+format:
+  html:
+    theme: 
+      - Zephyr
+      - custom.scss
+    css: styles.css
+    page-layout: custom
+
+
+
