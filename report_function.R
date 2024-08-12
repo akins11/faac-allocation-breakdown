@@ -514,11 +514,11 @@ format_change_icon <- function(chr_value, include_title = FALSE) {
 }
 
 format_rank_col <- function(num_value, add_class = "") {
-  if (num_value == 1) {
+  if (num_value %in% c(1, seq(21, 91, 10))) {
     chr_rank <- "st"
-  } else if (num_value == 2) {
+  } else if (num_value %in% c(2, seq(22, 92, 10))) {
     chr_rank <- "nd"
-  } else if (num_value == 3) {
+  } else if (num_value %in% c(3, seq(23, 93, 10))) {
     chr_rank <- "rd"
   } else {
     chr_rank <- "th"
@@ -631,7 +631,7 @@ get_state_tbl_data <- function(
       geo_zone = "North Central",
     ) |>
     dplyr::mutate(
-      details = "performing fully customized requests where data can be processed either in memory, on disk, or streaming via the callback or connection interfaces."
+      details = "details"
     ) |>
     dplyr::left_join(num_lgc, by = "state") |>
     dplyr::left_join(total_lgc_faac, by = "state") 

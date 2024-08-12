@@ -211,7 +211,7 @@ total_level_card_stats <- function(
             paste0(round(curr_list$change, 1), "%")
           )
         ),
-        htmltools::p(class = "desc", "Change from Prev. Yr.")
+        htmltools::p(class = "desc", "Change Prev. Yr.")
       )
     )
   )

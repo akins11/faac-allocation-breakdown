@@ -1,7 +1,7 @@
 ```{r}
-last_four_yrs <- state_df |> 
+last_four_yrs <- state_df |>
   filter(year <= current_year) |>
-  distinct(year) |> 
+  distinct(year) |>
   pull() |> rev() |> head(4)
 
 ```

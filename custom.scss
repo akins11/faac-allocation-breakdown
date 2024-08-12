@@ -53,7 +53,7 @@ $b-radius: 5px;
   list-style: none;
   box-sizing: border-box;
 }
-//f8fff9
+
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
@@ -76,6 +76,14 @@ h1, h2, h3, h4, h5, h6, p {
   
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 16px;
+    background-color: #e6ffea;
+    
+    &:has(.cell-output-display .faac-summary-table-container) {
+      background-color: $bg-white2;
+    }
+    &:has(.cell-output-display .about-container) {
+      background-color: $bg-white2;
+    }
   }
   
   &:has(.cell-output-display .page-header) {
@@ -223,18 +231,6 @@ ol, ul, dl {
 }
 
 // vizualization -------------------------------------
-/*.viz-container {
-  background-color: #fcfcfc;
-  border-radius: $b-radius;
-  //box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  box-shadow: red 0px 2px 6px; //rgba(0, 0, 0, 0.1)
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 16px;
-  }
-} */
 
 .row-gap {
   margin-bottom: 1.2rem;
@@ -421,14 +417,6 @@ ol, ul, dl {
         font-size: 0.85rem;
         font-weight: 600;
         color: $color-text;
-        
-        //&:has(.total) {
-          //color: red;
-          //font-weight: 600 !important;
-        //}
-        //.total {
-        //  font-weight: 600 !important;
-        //}
         
         .divider {
           border-right: 1px solid $color-muted;
@@ -782,7 +770,10 @@ ol, ul, dl {
         .desc {
           font-size: 0.85rem;
           
-          .duration {font-size: 0.65rem;}
+          .duration {
+            margin-right: 2px;
+            font-size: 0.65rem;
+          }
         }
       }
     }
@@ -791,14 +782,17 @@ ol, ul, dl {
     .viz-sparkline {height: 80%;}
     
     .change {
-      height: 20%;
       column-gap: 3px;
       
       .badge-container {
-        .value {font-size: 0.8rem;}
+        .value {
+          font-size: 0.7rem;
+          font-weight: 500;
+        }
         }
         .desc {
-          margin-top: 0.2rem;
+          //margin-top: 0.1rem;
+          margin-bottom: 0.5rem;
           font-size: 0.75rem;
         }
       }
@@ -827,15 +821,27 @@ ol, ul, dl {
   }
   
   .geo-card {
-    //height: minmax(440px, 460px);
     height: 455px;
     .card-row {
       .content {
         width: 40%;
         
+        .title {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        
         .value {
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           font-weight: 500;
+          
+          .rank {
+            display: none;
+          }
+          
+          .divider {
+            margin: 0 4px;
+          }
         }
       }
       .spark-viz {
