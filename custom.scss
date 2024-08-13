@@ -81,6 +81,9 @@ h1, h2, h3, h4, h5, h6, p {
     &:has(.cell-output-display .faac-summary-table-container) {
       background-color: $bg-white2;
     }
+    &:has(.cell-output-display .year-title) {
+      background-color: $bg-white2;
+    }
     &:has(.cell-output-display .about-container) {
       background-color: $bg-white2;
     }
@@ -90,7 +93,10 @@ h1, h2, h3, h4, h5, h6, p {
     box-shadow: unset;
     background-color: unset;
   }
-  
+  &:has(.cell-output-display .year-title) {
+    box-shadow: unset;
+    background-color: $bg-light;
+  }
   &:has(.cell-output-display .tbl-title-info) {
     box-shadow: unset;
     background-color: unset;
@@ -221,15 +227,36 @@ ol, ul, dl {
           font-size: 1.5rem;
           font-weight: 500;
           color: $color-text2;
+          text-decoration: none;
+          border-bottom: 2px solid transparent;
           transition: .5s ease;
           
-          &:hover {color: $color-text;}
+          &.active {
+            color: $color-pry3;
+            border-bottom-color: $color-pry3;
+          }
+          &:hover {
+            color: $color-text;
+            color: $color-pry5;
+            border-bottom-color: $color-pry5;
+          }
         }
       }
     }
   }
 }
 
+
+.year-title {
+  height: 30px;
+  padding-left: 1rem;
+  .text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $color-muted;
+    text-decoration: underline;
+  }
+}
 // vizualization -------------------------------------
 
 .row-gap {
@@ -746,6 +773,12 @@ ol, ul, dl {
     }
   }
   
+  .year-title {
+    height: 25px;
+    padding-left: 0.6rem;
+    .text {font-size: 1.1rem;}
+  }
+  
   .report-card {
     height: 230px;
     padding: 0.7rem;
@@ -959,6 +992,12 @@ ol, ul, dl {
     }
   }
   
+  .year-title {
+    height: 30px;
+    padding-left: 0.8rem;
+    .text {font-size: 1.2rem;}
+  }
+    
   .report-card {
     height: 220px;
     padding: 1.2rem;
@@ -1104,6 +1143,13 @@ ol, ul, dl {
         }
       }
     }
+  }
+  
+  .year-title {
+    height: 30px;
+    margin-top: 0.8rem;
+    padding-left: 0.4rem;
+    .text {font-size: 1.25rem;}
   }
   
   .high-low-card {

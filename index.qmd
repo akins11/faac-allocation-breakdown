@@ -51,10 +51,6 @@ current_month_abbr_name <- current_date_info$month_abb
 current_month_full_name <- current_date_info$month_name
 ```
 
-```{r}
-# analysis_yr_range <- analysis_full_year_range(state_df, lga_df)
-```
-
 
 <!----- OUTPUT -------------------------------------------------------------->
 <!------ Page Title & Navigation container ---------------------------------->
@@ -67,6 +63,13 @@ page_title_nav(
   curr_nav_year, 
   prev_nav_year, 
   "current"
+)
+```
+
+```{r}
+div(
+  class = "year-title",
+  h3(class = "text", paste(curr_nav_year, "Breakdown"))
 )
 ```
 
